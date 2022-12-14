@@ -15,7 +15,7 @@ Github Classroom に課題を提出する方法です。
 
 課題のプロジェクトを開いた状態で手順を進めると、プロジェクトが壊れることがあります。
 
-image::./img/fig01.png[title=プロジェクトを閉じる] 
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig02a.png[title=プロジェクトを閉じる] 
 
 '''
 
