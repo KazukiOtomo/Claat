@@ -1,0 +1,227 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>ソフトウェアデザイン第3回</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements-tmp/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="WorkSheet3-1"
+                  title="ソフトウェアデザイン第3回"
+                  environment="web"
+                  feedback-link="https://github.com/KazukiOtomo">
+    
+      <google-codelab-step label="値オブジェクト" duration="0">
+        <pre><code language="language-java" class="language-java">int quantity;
+BigDecimal amount;
+</code></pre>
+<p>このコードは、数量（quantity）をマイナス21億からプラス21億まで、 金額（amount）をほぼ無限大かつ小数点21億桁まで扱うような宣言になっています。</p>
+<p>しかし、業務内で扱う数量や金額はそのような値が登場することはない。 文法的には問題ないが、異常な値が混入する（バグ）可能性が高くなります。</p>
+<p>この問題を防ぐために用いるデザインパターンが、<strong>値オブジェクト</strong>です。</p>
+<p>Lombokというライブラリを使うと値オブジェクトを簡潔に書くことができます。</p>
+<p>Amount.java <strong>（Lombokを使用した版）</strong></p>
+<pre><code language="language-java" class="language-java">import lombok.Value;
+
+@Value
+public class Amount {
+    long value;
+}
+</code></pre>
+<p>実際に生成されているコードは以下のようになります。 注目してほしい点は、</p>
+<pre><code>・デフォルトコンストラクタ（引数なしコンストラクタ）が生成できない
+・Setterが利用できない
+・Getterは利用できる
+・継承が利用できない
+</code></pre>
+<p>Amount.java <strong>（同じことをやろうとした版）</strong></p>
+<pre><code language="language-java" class="language-java">public class Amount {
+    private final long value;
+    private final String name;
+
+    public Amount(final long id, final String name) {
+        this.value = id;
+        this.name = name;
+    }
+
+    public long getValue() {
+        return this.value;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Amount)) return false;
+        final Amount other = (Amount) o;
+        if (this.getValue() != other.getValue()) return false;
+        final Object this$name = this.getName();
+        final Object other$name = other.getName();
+        if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final long $id = this.getValue();
+        result = result * PRIME + (int) ($id &gt;&gt;&gt; 32 ^ $id);
+        final Object $name = this.getName();
+        result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return &#34;Amount(id=&#34; + this.getValue() + &#34;, name=&#34; + this.getName() + &#34;)&#34;;
+    }
+}
+</code></pre>
+<p>値オブジェクトを活用したクラスの例と用意できるテストを以下に示す。</p>
+<p>Merchandice.java</p>
+<pre><code language="language-java" class="language-java">public class Merchandise {
+
+    private final Amount amount;
+
+    public Merchandise(Amount amount) {
+        if (amount.getValue() &lt; 0) throw new IllegalArgumentException(&#34;負の値が入っています&#34;);
+        this.amount = amount;
+    }
+}
+</code></pre>
+<p>Merchandise.java</p>
+<pre><code language="language-java" class="language-java">import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class MerchandiseTest {
+
+    @Test
+    void 金額がマイナスの商品はインスタンス化することができない() {
+        assertThrows(IllegalArgumentException.class,
+                () -&gt; new Merchandise(new Amount(-1)));
+    }
+}
+</code></pre>
+<p>このテストでは、商品（Merchandise）クラスが異常な値を持つことが絶対にないという検証になっている と共に、「金額がマイナスになることはない」という<strong>業務におけるルール</strong>も読み取ることができる。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="演習1" duration="0">
+        
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ファーストクラスコレクションパターン" duration="0">
+        <p>コレクションオブジェクト（List, Set, Map, 配列など）を扱うコードは複雑になりがちです。</p>
+<p>例えば、</p>
+<pre><code>・Listに要素を追加する
+・Listの0番目を抽出する
+</code></pre>
+<p>といった<strong>副作用</strong>のある処理を複数箇所にわたって書いてしまった場合、 バグの原因となると共に、変更する際のチェック範囲を増加させ、 変更容易性の低いコードとなってしまいます。</p>
+<p><em>コレクションの参照をそのまま渡したGetterメソッド（よくない例）</em></p>
+<pre><code language="language-java" class="language-java">public class Cards {
+    private final List&lt;Card&gt; cards;
+
+    // このメソッドを呼び出した先で判断/加工/計算が行われる可能性がある
+    public List&lt;Card&gt; getList() {
+        return this.cards;
+    }
+}
+</code></pre>
+<p>この問題を解決するためのデザインパターンが、 <strong>ファーストクラスコレクション</strong>パターンです。</p>
+<p>これは、コレクション型のインスタンス変数を１つだけ持つ専用クラスを作り、 コレクションに関するロジックをカプセル化することで、 コレクションを操作するロジックをコレクションオブジェクトに閉じ込めることを目指しています。</p>
+<p><em>サンプルコード（ファーストクラスコレクション）</em></p>
+<pre><code language="language-Java" class="language-Java">public class Cards {
+    private final List&lt;Card&gt; cards;
+
+    // 外部からインスタンス化もできないようにする
+    private Cards(){
+        this.cards = new ArrayList&lt;Card&gt;();
+    }
+
+    // コレクションを操作するロジックをクラス内に閉じ込める
+    void add(Card card) { ... }
+    void removeIfExist(Card card) { ... }
+
+    int count() { ... }
+}
+</code></pre>
+<p>また、コレクションオブジェクトは、業務の関心事そのものであることが多いです。</p>
+<p>例えば、同じCardインスタンスを持つコレクションオブジェクトでも、 「デッキ」と「手札」では、ルールや振る舞いは異なるものであるはずです。</p>
+<p>なので、それぞれ専用のクラスを作り、それぞれに対応した専用のクラスを用意することで 業務ロジックをわかりやすく整理し、コードの変更を楽で安全にすることにつながります。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="演習2" duration="0">
+        <p>以下で示すコードには、複数の問題があります。</p>
+<p>コードに含まれている問題点を指摘した上で、 改善したクラスを作成してください。（改善箇所や方法は１つとは限りません）</p>
+<p>SampleService.java</p>
+<pre><code language="language-java" class="language-java">public class SampleService {
+
+    public void createCustomerList(Customer customer){
+        var customers = new Customers();
+        var customerList = customers.getCustomerList();
+        customerList.add(customer);
+    }
+}
+</code></pre>
+<p>Customer.java</p>
+<pre><code language="language-java" class="language-java">public class Customer {
+
+    final int credit;
+
+    public Customer(int credit) {
+        this.credit = credit;
+    }
+}
+</code></pre>
+<p>Customers.java</p>
+<pre><code language="language-java" class="language-java">public class Customers {
+
+    private final List&lt;Customer&gt; customerList;
+
+    public Customers() {
+        this.customerList = new ArrayList&lt;&gt;();
+    }
+
+    public List&lt;Customer&gt; getCustomerList() {
+        return customerList;
+    }
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements-tmp/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements-tmp/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements-tmp/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements-tmp/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
