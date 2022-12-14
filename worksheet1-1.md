@@ -46,13 +46,13 @@ git add.
 git commit -m "10回目の課題ファイルを追加"
 git push
 ```
-課題が、課題提出場所（リポジトリ）のURL https://github.com/cist-ictdev-2022/git-test-xxxxxx に提出されます。
+課題が、自分のGithub ClassRoomに提出されます。
 
-課題提出場所（リポジトリ）のURL https://github.com/cist-ictdev-2022/git-test-xxxxxx をもう一度ブラウザで開き、課題のファイルが提出（push）されていることを確認する。
+自分のGithub ClassRoomをもう一度ブラウザで開き、課題のファイルが提出（push）されていることを確認する。
 
 ここまで終われば完了です。お疲れ様でした。
 
-## 環境構築（一応）
+## 環境構築（終わっている人は飛ばしてください）
 
 ### IntelliJ IDEA Ultimateの準備
 IntelliJ IDEA Ultimate を使います。
