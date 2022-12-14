@@ -15,7 +15,7 @@ Github Classroom に課題を提出する方法です。
 
 課題のプロジェクトを開いた状態で手順を進めると、プロジェクトが壊れることがあります。
 
-image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig02a.png[title=プロジェクトを閉じる] 
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig01.png[title=プロジェクトを閉じる] 
 
 '''
 
@@ -27,25 +27,25 @@ image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig02a.
 
 ログイン画面が表示されるので、あなたのGitHubアカウントでログインしてください。
 
-image::./img/fig02a.png[title=ログイン画面。あなたのGitHubでログイン]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig02a.png[title=ログイン画面。あなたのGitHubでログイン]
 
 === 1-2.学籍番号の選択
 
 授業の課題名と、学籍番号の一覧が表示されます。この中から、 *自分の学籍番号を探して、間違いやとり違えのないように選択* してください。（一度、確認が出ます） 
 
-image::./img/fig03.png[title=学籍番号の選択]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig03.png[title=学籍番号の選択]
 
 === 1-3.課題開始の確認
 
 *`Accept this assignment` をクリック* します。
 
-image::./img/fig04.png[title=課題開始の確認]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig04.png[title=課題開始の確認]
 
 === 1-4.課題の提出場所の作成
 
 2, 3分程度待ってから、ブラウザの更新ボタンを押します。
 
-image::./img/fig05.png[title=作成中の画面]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig05.png[title=作成中の画面]
 
 === 1-5.課題の提出場所の作成（完了）
 
@@ -53,7 +53,7 @@ image::./img/fig05.png[title=作成中の画面]
 
 `https://github.com/cist-ictdev-2022/sd22-pre-XXXXXXX` （xxxxxxの部分は各自異なる） のようなURLになります。
 
-image::./img/fig06.png[title=作成完了後の画面]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig06.png[title=作成完了後の画面]
 
 '''
 
@@ -63,13 +63,13 @@ image::./img/fig06.png[title=作成完了後の画面]
 
 1-5 でコピーした、あなたの Classroomの課題提出場所（リポジトリ）のURL を、ブラウザで開きます。
 
-image::./img/fig07.png[title=ブラウザでのアクセス]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig07.png[title=ブラウザでのアクセス]
 
 === 2-2. git cloneの準備
 
 `code` ボタンを押し、**clone用のURLをコピー** します。(URLの横のボタンを押すと簡単にコピーできます)
 
-image::./img/fig08.png[title=URLのコピー]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig08.png[title=URLのコピー]
 
 === 2-3. git clone
 
@@ -93,7 +93,7 @@ https://github.com/cist-ictdev-2022/linebot  にアクセスします。
 
 `code` ボタンを押し、今度は、`Download ZIP` をクリックします。
 
-image::./img/fig10.png[title=linebot-main.zip をダウンロード]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig10.png[title=linebot-main.zip をダウンロード]
 
 === 2-5. 課題用のプロジェクトの移動
 
@@ -101,7 +101,7 @@ image::./img/fig10.png[title=linebot-main.zip をダウンロード]
 
 **中身の linebot-main フォルダを、2-3 で作成された `se22-xxxxxx` フォルダの中に移動（追加）** してください。
 
-image::./img/fig09.png[title=git cloneで作成したフォルダの中に、課題のフォルダを移動]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig09.png[title=git cloneで作成したフォルダの中に、課題のフォルダを移動]
 
 ==== ❗ 注意事項❗
 
@@ -173,23 +173,23 @@ git push
 
 ファイルメニューから `ファイル` > `プロジェクト構造` を選択してください。
 
-image::./img/fig11.png[title=プロジェクト構造]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig11.png[title=プロジェクト構造]
 
 プロジェクト構造ダイアログの中で、`プラットフォーム設定` の `SDK` を選んでください。
 
-image::./img/fig12.png[title=プロジェクト構造>SDK]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig12.png[title=プロジェクト構造>SDK]
 
 `+` ボタンを押して、`JDKのダウンロード` を押してください。
 
-image::./img/fig13.png[title=JDKダウンロード]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig13.png[title=JDKダウンロード]
 
 JDKのダウンロードダイアログの中で、`バージョン` を `17` に切り替え、`ダウンロード` を選んでください。
 
-image::./img/fig14.png[title=OpenJDK17のDL]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig14.png[title=OpenJDK17のDL]
 
 . ダウンロードが完了したら、名前欄に `openjdk-17` が表示されていることを確認し `適用` ボタンを押してください。
 
-image::./img/fig15.png[title=OpenJDK17の導入完了]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig15.png[title=OpenJDK17の導入完了]
 
 === 3-4. Java 17 を利用するように設定
 
@@ -197,13 +197,13 @@ image::./img/fig15.png[title=OpenJDK17の導入完了]
 
 `SDK` の欄を `openjdk-17` にして、 `適用` ボタンを押してください。
 
-image::./img/fig16.png[title=モジュールSDKの設定]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig16.png[title=モジュールSDKの設定]
 
 プロジェクト構造ダイアログの中で、`プロジェクト設定` の `モジュール` を選んでください。
 
 `言語レベル` の欄を `17 - sealed型...` にして、 `適用` ボタンを押してください。
 
-image::./img/fig17.png[title=言語レベルSDKの設定]
+image::https://github.com/cist-ictdev-2022/GitHowTo/raw/main/SoftEng/img/fig17.png[title=言語レベルSDKの設定]
 
 `OK`ボタンを押して閉じます。
 
