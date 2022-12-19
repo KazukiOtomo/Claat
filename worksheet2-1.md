@@ -8,6 +8,31 @@ feedback link: https://github.com/KazukiOtomo
 
 # ソフトウェアデザイン第2回
 
+## 課題提出用の指示
+
+<aside class="negative">
+前回の作成したGithub ClassRoomとは別のレポジトリを用意したので、注意してください。
+</aside>
+
+授業の指示にあるGithub ClassRoomのリンクを押して、URLが
+sd22-**exercise**-XXXXXXXとなっていることを確認して、cloneしてください
+
+
+### その上で、Moduleを選択し、
+![画像1](png/gazou1.png)
+
+### 以下のような設定でNextを押し、（JavaのVersionについては、17以上であれば問題ありません）次の画面でもCreateを押します。
+![画像2](png/gazou2.png)
+
+### pom.xmlを開き、右クリックして「Add as Maven Project」を押すと、 Javaクラスとして認識されると思います。
+![画像3](png/gazou3.png)
+
+### 下図のように、com.example.demo内に、lecture11 ~ 13のパッケージを作成してください。
+![画像4](png/gazou4.png)
+
+<aside class="negative">
+今回の課題は、このlecture11パッケージ内にクラスを作成して提出してください。
+</aside>
 
 
 ## アクセス修飾子
@@ -423,3 +448,19 @@ class HumanTest {
     }
 }
 ```
+
+
+## Giuhub ClassRoomへのPush
+
+### commit コマンド
+
+```
+git add.
+git commit -m "10回目の課題ファイルを追加"
+git push
+```
+課題が、自分のGithub ClassRoomに提出されます。
+
+自分のGithub ClassRoomをもう一度ブラウザで開き、課題のファイルが提出（push）されていることを確認する。
+
+ここまで終われば完了です。お疲れ様でした。
