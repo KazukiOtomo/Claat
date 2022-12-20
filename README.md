@@ -3,6 +3,10 @@
 ## 授業
 H102で行います。
 
+*講義資料*
+
+https://docs.google.com/presentation/d/1u8gc4XgBj_kP78Hb7G9lFht11QVdRmFs4xNerD-lL8Q/edit?usp=share_link
+
 ## 課題
 
 初めに、皆さんの情報システムの設計や実装に対する、学習者の自己評価を見るために、
