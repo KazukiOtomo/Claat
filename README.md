@@ -26,7 +26,7 @@ https://classroom.github.com/a/29QMpDVF
 https://kazukiotomo.github.io/Claat/WorkSheet2-1/#0
 
 
-**・Github ClassRoomの使い方**
+**・Github ClassRoomの使い方（前回と同じもの）**
 
 https://github.com/KazukiOtomo/Claat/blob/main/WorkSheet1-1/ClassRoom.adoc
 
