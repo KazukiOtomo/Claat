@@ -70,7 +70,7 @@
     
       <google-codelab-step label="演習１" duration="0">
         <p>以下で示すコードには、複数の問題があります。</p>
-<p>コードに含まれている問題点を見つけ、 改善点を<strong>コメント文</strong>で解説したクラスを作成してください。（改善箇所や方法は１つとは限りません）</p>
+<p>コードに含まれている問題点を見つけ、 クラスを作成した上で、改善点を<strong>コメント文</strong>で解説してください。（改善箇所や方法は１つとは限りません）</p>
 <p>追記事項 ・Cardは、トランプのカードです。</p>
 <p>Card.java</p>
 <pre><code language="language-java" class="language-java">public class Card {
@@ -137,7 +137,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="演習２" duration="0">
-        <p>以下に示すコードを読み取り、 SampleService.java内のsampleMethodの処理を完成させよ。 (Main.javaは実行用のクラスです)</p>
+        <p>以下に示すコードを読み取り、 SampleService.java内のsampleMethodの処理を完成させよ。 (Main.javaは実行用のクラスです、必要に応じて他のクラスにもメソッドの追加を行っても構いません)</p>
 <p>Dog.java</p>
 <pre><code language="language-java" class="language-java">public class Dog {
 
@@ -350,8 +350,8 @@ void テストケースのサンプル() {
     
       <google-codelab-step label="演習3" duration="0">
         <p>以下のテストを満たすような、Human.javaを書いてください。</p>
-<p>StudentTest.java</p>
-<pre><code language="language-java" class="language-java">class HumanTest {
+<p>HumanTest.java</p>
+<pre><code language="language-java" class="language-java">public class HumanTest {
 
     @Test
     void HumanのhumanIdが0以下の時はインスタンス化できない() {
@@ -371,6 +371,12 @@ void テストケースのサンプル() {
         human.grow();
         assertEquals(Age.ADULT, human.getAge());
     }
+}
+
+public enum Age {
+    CHILD,
+    ADULT,
+    SENIOR
 }
 </code></pre>
 

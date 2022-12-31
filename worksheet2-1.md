@@ -54,7 +54,7 @@ sd22-**exercise**-XXXXXXXとなっていることを確認して、cloneして�
 以下で示すコードには、複数の問題があります。
 
 コードに含まれている問題点を見つけ、
-改善点を**コメント文**で解説したクラスを作成してください。（改善箇所や方法は１つとは限りません）
+クラスを作成した上で、改善点を**コメント文**で解説してください。（改善箇所や方法は１つとは限りません）
 
 追記事項
 ・Cardは、トランプのカードです。
@@ -139,7 +139,7 @@ Streamを使う大きなメリットとしては、可読性の向上が挙げ�
 
 以下に示すコードを読み取り、
 SampleService.java内のsampleMethodの処理を完成させよ。
-(Main.javaは実行用のクラスです)
+(Main.javaは実行用のクラスです、必要に応じて他のクラスにもメソッドの追加を行っても構いません)
 
 Dog.java
 ```java
@@ -424,9 +424,9 @@ public class Money {
 
 以下のテストを満たすような、Human.javaを書いてください。
 
-StudentTest.java
+ HumanTest.java
 ```java
-class HumanTest {
+public class HumanTest {
 
     @Test
     void HumanのhumanIdが0以下の時はインスタンス化できない() {
@@ -446,6 +446,12 @@ class HumanTest {
         human.grow();
         assertEquals(Age.ADULT, human.getAge());
     }
+}
+
+public enum Age {
+    CHILD,
+    ADULT,
+    SENIOR
 }
 ```
 
