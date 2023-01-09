@@ -447,7 +447,10 @@ public class HumanTest {
         assertEquals(Age.ADULT, human.getAge());
     }
 }
+```
 
+Age.java
+```java
 public enum Age {
     CHILD,
     ADULT,
@@ -462,7 +465,7 @@ public enum Age {
 
 ```
 git add.
-git commit -m "10回目の課題ファイルを追加"
+git commit -m "11回目の課題ファイルを追加"
 git push
 ```
 課題が、自分のGithub ClassRoomに提出されます。
