@@ -27,6 +27,17 @@
                   environment="web"
                   feedback-link="https://github.com/KazukiOtomo">
     
+      <google-codelab-step label="課題提出用の指示" duration="0">
+        <aside class="warning"><p> 前回使ったGithub ClassRoomと同じレポジトリで提出してもらいます。注意してください。 </p>
+</aside>
+<p>（変更していなければ）フォルダ名がsd22-<strong>exercise</strong>-XXXXXXXとなっていることを確認してください。</p>
+<aside class="warning"><p> 今回の課題は、このlecture12パッケージ内にクラスやパッケージを作成して提出してください。 </p>
+</aside>
+<p class="image-container"><img alt="画像4" src="img/7446f3552806a99e.png"></p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="値オブジェクト" duration="0">
         <pre><code language="language-java" class="language-java">int quantity;
 BigDecimal amount;
@@ -97,7 +108,7 @@ public class Amount {
 }
 </code></pre>
 <p>値オブジェクトを活用したクラスの例と用意できるテストを以下に示す。</p>
-<p>Merchandice.java</p>
+<p>Merchandise.java</p>
 <pre><code language="language-java" class="language-java">public class Merchandise {
 
     private final Amount amount;
@@ -108,7 +119,7 @@ public class Amount {
     }
 }
 </code></pre>
-<p>Merchandise.java</p>
+<p>MerchandiseTest.java</p>
 <pre><code language="language-java" class="language-java">import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -122,13 +133,73 @@ class MerchandiseTest {
     }
 }
 </code></pre>
-<p>このテストでは、商品（Merchandise）クラスが異常な値を持つことが絶対にないという検証になっている と共に、「金額がマイナスになることはない」という<strong>業務におけるルール</strong>も読み取ることができる。</p>
+<p>このテストでは、商品（Merchandise）クラスが異常な値を持つことが絶対にないという検証になっていると共に、「金額がマイナスになることはない」という<strong>業務におけるルール</strong>も読み取ることができる。 また、独自型を設定することにより、値の渡し間違いを防ぐことができるという利点もある。（例えば、ここでAmountをint型にしていた場合、数量やIDなどといった別の値を間違って渡してしまう恐れがある）</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lombokの導入" duration="0">
+        <h2 is-upgraded>pom.xmlの編集</h2>
+<p>pom.xmlを開き、<code><dependencies></code>のタグ内に、 以下に示すものを追加して、mavenをリロードしてください</p>
+<p>pom.xmlに追加するもの（コピペ推奨）</p>
+<pre><code language="language-xml" class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>参考画像 <img src="img/73fd40a6814bec7b.png"></p>
+<h2 is-upgraded>動作確認</h2>
+<p>「@V」と打って、以下のような予測変換が出ていれば導入に成功しています。 <img src="img/6d6672e8916b83a2.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="演習1" duration="0">
-        
+        <p>以下のクラス図を読み取った上で実装してください。（なお、作成するクラスは、lecture12パッケージの中に、Problem1パッケージを作ってまとめて下さい。）</p>
+<p>メソッドやコンストラクタなど、必要だと思ったものについては随時追加して構いません。</p>
+<p class="image-container"><img src="img/d6ae5dd0177b5d13.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="演習2" duration="0">
+        <p>　 PurchaseServiceのselect()とbuy()について、 動作を検証できるようなテストを書いてください。</p>
+<p>以下、ヒントです。</p>
+<p>PurchaseTest.java</p>
+<pre><code language="language-java" class="language-java">public class PurchaseTest {
+
+    final Stock stock;
+    final IPurchaseService purchaseService;
+
+    public PurchaseTest(Stock stock, IPurchaseService purchaseService) {
+        this.stock = stock;
+        this.purchaseService = purchaseService;
+    }
+
+    // 全てのテストケースよりも一番先に走るメソッドです
+    @BeforeEach
+    void setUp() {
+        var merchandise = new Merchandise(new MerchandiseId(101L), new Price(500));
+        var merchandise1 = new Merchandise(new MerchandiseId(102L), new Price(1000));
+
+        stock.add(merchandise);
+        stock.add(merchandise1);
+    }
+
+    @Test
+    void buyメソッドが動作している() {
+        // 以下、動作しているか確かめるようなテスト
+    }
+
+    @Test
+    void selectメソッドが動作している() {
+        // 以下、動作しているか確かめるようなテスト
+    }
+}
+</code></pre>
+<p>テストの作り方については、<a href="https://kazukiotomo.github.io/Claat/WorkSheet2-1/#6" target="_blank">前回の該当部分</a></p>
+
 
       </google-codelab-step>
     
@@ -155,8 +226,7 @@ class MerchandiseTest {
 <pre><code language="language-Java" class="language-Java">public class Cards {
     private final List&lt;Card&gt; cards;
 
-    // 外部からインスタンス化もできないようにする
-    private Cards(){
+    public Cards(){
         this.cards = new ArrayList&lt;Card&gt;();
     }
 
@@ -174,43 +244,161 @@ class MerchandiseTest {
 
       </google-codelab-step>
     
-      <google-codelab-step label="演習2" duration="0">
-        <p>以下で示すコードには、複数の問題があります。</p>
-<p>コードに含まれている問題点を指摘した上で、 改善したクラスを作成してください。（改善箇所や方法は１つとは限りません）</p>
-<p>SampleService.java</p>
-<pre><code language="language-java" class="language-java">public class SampleService {
+      <google-codelab-step label="演習3" duration="0">
+        <p>演習1で作成したクラスについて、 ファーストクラスコレクションパターンで書き換えてみましょう。 (書き換えたクラス群については、lecture12 &gt; Problem2にまとめておいてください)</p>
 
-    public void createCustomerList(Customer customer){
-        var customers = new Customers();
-        var customerList = customers.getCustomerList();
-        customerList.add(customer);
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Enumと区分オブジェクト" duration="0">
+        <p>Enumは列挙型とも呼ばれ、区分定数の一覧を宣言する用途でよく使われています。</p>
+<pre><code language="language-java" class="language-java">public enum Country {
+    America,
+    China,
+    Japan,
+    Germany,
+    TheUnitedKingdom,
+}
+
+</code></pre>
+<p>列挙型は、Java以外の言語でもよく用意されていますが、 Javaでは列挙型もクラスとして扱われます。 なので、</p>
+<pre><code>区分ごとの値をインスタンス変数に保持する
+区分ごとに異なるロジックをメソッドとして記述することができる
+</code></pre>
+<p>といった使い方ができます。この手法を<strong>区分オブジェクト</strong>と呼びます。</p>
+<p>やり方としては、</p>
+<p>Country.java</p>
+<pre><code language="language-java" class="language-java">public enum Country {
+
+    /**
+    * ()でコンストラクタに引数を渡す
+    */
+    America(1, &#34;アメリカ&#34;),
+    China(86, &#34;中国&#34;),
+    Japan(81, &#34;日本&#34;),
+    Germany(49, &#34;ドイツ&#34;),
+    TheUnitedKingdom(44, &#34;イギリス&#34;),
+
+    ;　　　// セミコロンで要素とクラス定義を区切る
+    
+    private int code; // カントリーコード
+    private String japaneseName; // 日本語名
+
+    /**
+    * コンストラクタ
+    * かならずprivate指定でなければならない
+    */
+    private Country (int code, String japaneseName) {
+        this.code = code;
+        this.japaneseName = japaneseName;
+    }
+
+    public int getCode(){
+        return code;
+    }
+
+    public String getJapaneseName(){
+        return japaneseName;
     }
 }
 </code></pre>
-<p>Customer.java</p>
-<pre><code language="language-java" class="language-java">public class Customer {
+<p>1つ注意しないといけないのが、 enumのコンストラクタは必ずprivate指定でないと行けない点で、 private以外を指定した場合はコンパイルエラーとなる。 これはenumの要素が新規生成されるのを防ぐためである。</p>
+<p>Country.javaを使う側のコード</p>
+<pre><code language="language-java" class="language-java">Country c = Country.China;
+int code = c.getCode();
+String japaneseName = c.getJapaneseName();
+</code></pre>
+<p>このように、区分ごとに異なる処理（業務ロジック）を、区分ごとに別のクラスに独立させると、 オブジェクト指向らしいコードの整理ができます。 つまり、どこに何が書いてあるかがわかりやすくなるとともに、 新しく機能追加する際に、<strong>どこに書くべきなのか</strong>がわかりやすくなります。</p>
+<p>また、区分オブジェクトを活用することによって、 switch文やif文を使った条件分岐を減らすことも可能です。</p>
 
-    final int credit;
 
-    public Customer(int credit) {
-        this.credit = credit;
+      </google-codelab-step>
+    
+      <google-codelab-step label="今日の知識を活用するとどうなるのか" duration="0">
+        <h2 is-upgraded>良くない例</h2>
+<p>Card.java</p>
+<pre><code language="language-java" class="language-java">class Card{
+
+     final String number;
+     final String mark;
+     // このように、フィールド名だけで区別しようとすると、例えばインスタンス化の時に謝って逆順に挿入する可能性がある。
+
+     public Card (String number, String mark) {
+        this.number = number;
+        this.mark = mark;
+     }
+
+     public String getContent(){
+        return &#34;符号は&#34; + this.mark + &#34;数字は&#34; + this.number;
+     }
+}
+</code></pre>
+<p>実行クラス</p>
+<pre><code language="language-java" class="language-java">class main{
+    public static void main(String[] args) {
+        // 下記の二つともコンパイルには成功するが...
+        var card = new Card(&#34;1&#34;, &#34;ハート&#34;);
+        var card1 = new Card(&#34;スペード&#34;, &#34;6&#34;);
+
+        card.getContent();
+        // ここで、符号と数字が逆転したバグが生じてしまう（符号と数字の表示が逆になる　例：「符号は6 数字はスペード」）
+        card1.getContent();
     }
 }
 </code></pre>
-<p>Customers.java</p>
-<pre><code language="language-java" class="language-java">public class Customers {
+<h2 is-upgraded>改善例</h2>
+<p>Card.java</p>
+<pre><code language="language-java" class="language-java">public class Card {
 
-    private final List&lt;Customer&gt; customerList;
+    // 値を扱うための独自クラスを作成する（値オブジェクト）
+    final Number number;
+    // 区分を表現するEnum
+    final Mark mark;
 
-    public Customers() {
-        this.customerList = new ArrayList&lt;&gt;();
+    public Card(Number number, Mark mark) {
+        // 不正なインスタンス化を防御するガード節
+        if (number.getValue() &lt; 0 || number.getValue() &gt; 13) throw new IllegalArgumentException(&#34;不正な数字のCardは作れない&#34;);
+        this.number = number;
+        this.mark = mark;
     }
 
-    public List&lt;Customer&gt; getCustomerList() {
-        return customerList;
+    public String getContent() {
+        return this.mark.name + &#34;,&#34; + this.number.getValue();
+    }
+
+}
+</code></pre>
+<p>Number.java</p>
+<pre><code language="language-java" class="language-java">@Value
+public class Number {
+    int value;
+}
+</code></pre>
+<p>Mark.java</p>
+<pre><code language="language-java" class="language-java">public enum Mark {
+    スペード,
+    クローバー,
+    ダイヤ,
+    ハート
+}
+</code></pre>
+<p>実行用クラス</p>
+<pre><code language="language-java" class="language-java">public class main {
+    public static void main(String[] args) {
+
+        var card = new Card(new Number(1), Mark.クローバー);
+
+        // 独自型を設定することで、変数を逆順に入れられる可能性がなくなる
+        var card1 = new Card(Mark.スペード, new Number(6));
+
+        card.getContent();
+        card1.getContent();
     }
 }
 </code></pre>
+<h2 is-upgraded>結論</h2>
+<p>値オブジェクト、区分オブジェクト、ファーストクラスコレクションのいずれもやろうとしていることは一緒で、「プログラムが不正な動作をしないように、適切な型定義を行うことで防御すること」です。これを<strong>型安全性</strong>と言います。</p>
+<p>良くない例のように、フィールド名で区別することも可能ですし、値オブジェクトを使うとクラスの数が余計に増えていくと感じるかもしれませんが、型安全性を確保できるメリットは想像以上に大きいです。</p>
 
 
       </google-codelab-step>
