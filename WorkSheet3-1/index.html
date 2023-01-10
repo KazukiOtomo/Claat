@@ -43,41 +43,28 @@
 BigDecimal amount;
 </code></pre>
 <p>このコードは、数量（quantity）をマイナス21億からプラス21億まで、 金額（amount）をほぼ無限大かつ小数点21億桁まで扱うような宣言になっています。</p>
-<p>しかし、業務内で扱う数量や金額はそのような値が登場することはない。 文法的には問題ないが、異常な値が混入する（バグ）可能性が高くなります。</p>
+<p>しかし、業務内で扱う数量や金額においてそのような値が登場することはありません。 もちろん、文法的には問題ありませんが、異常な値（バグ）が混入する可能性が高くなります。</p>
 <p>この問題を防ぐために用いるデザインパターンが、<strong>値オブジェクト</strong>です。</p>
-<p>Lombokというライブラリを使うと値オブジェクトを簡潔に書くことができます。</p>
-<p>Amount.java <strong>（Lombokを使用した版）</strong></p>
-<pre><code language="language-java" class="language-java">import lombok.Value;
-
-@Value
-public class Amount {
-    long value;
-}
-</code></pre>
-<p>実際に生成されているコードは以下のようになります。 注目してほしい点は、</p>
+<p>値オブジェクトを実装したコードは以下のようになります。</p>
+<p>注目してほしい点は、</p>
 <pre><code>・デフォルトコンストラクタ（引数なしコンストラクタ）が生成できない
 ・Setterが利用できない
 ・Getterは利用できる
 ・継承が利用できない
 </code></pre>
-<p>Amount.java <strong>（同じことをやろうとした版）</strong></p>
+<p>Amount.java</p>
 <pre><code language="language-java" class="language-java">public class Amount {
     private final long value;
-    private final String name;
 
-    public Amount(final long id, final String name) {
-        this.value = id;
-        this.name = name;
+    public Amount(final long value) {
+        this.value = value;
     }
 
     public long getValue() {
         return this.value;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
+// オブジェクトの参照を行うために必要な実装
     @Override
     public boolean equals(final Object o) {
         if (o == this) return true;
@@ -107,7 +94,23 @@ public class Amount {
     }
 }
 </code></pre>
-<p>値オブジェクトを活用したクラスの例と用意できるテストを以下に示す。</p>
+<p>ただ、毎回このような実装をするのはコストがかかりすぎるので、簡単に値オブジェクトを作成するライブラリがあるので、今回はそちらを利用します。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lombok" duration="0">
+        <p>Lombokというライブラリを使うと値オブジェクトを実装するのに必要な各メソッドを自動的に生成してくれます。</p>
+<p>Amount.java <strong>（Lombokを使用した版）</strong></p>
+<pre><code language="language-java" class="language-java">import lombok.Value;
+
+@Value
+public class Amount {
+    long value;
+}
+</code></pre>
+<p>例えば、このAmountクラスのインスタンスは、getValue()が使えるようになっていたり、serValue()が使えないようなコードが自動的に生成されています。</p>
+<p>値オブジェクトを活用したクラスの例と用意できるテストを以下に示します。</p>
 <p>Merchandise.java</p>
 <pre><code language="language-java" class="language-java">public class Merchandise {
 
@@ -309,7 +312,6 @@ int code = c.getCode();
 String japaneseName = c.getJapaneseName();
 </code></pre>
 <p>このように、区分ごとに異なる処理（業務ロジック）を、区分ごとに別のクラスに独立させると、 オブジェクト指向らしいコードの整理ができます。 つまり、どこに何が書いてあるかがわかりやすくなるとともに、 新しく機能追加する際に、<strong>どこに書くべきなのか</strong>がわかりやすくなります。</p>
-<p>また、区分オブジェクトを活用することによって、 switch文やif文を使った条件分岐を減らすことも可能です。</p>
 
 
       </google-codelab-step>

@@ -35,24 +35,13 @@ BigDecimal amount;
 このコードは、数量（quantity）をマイナス21億からプラス21億まで、
 金額（amount）をほぼ無限大かつ小数点21億桁まで扱うような宣言になっています。
 
-しかし、業務内で扱う数量や金額はそのような値が登場することはない。
-文法的には問題ないが、異常な値が混入する（バグ）可能性が高くなります。
+しかし、業務内で扱う数量や金額においてそのような値が登場することはありません。
+もちろん、文法的には問題ありませんが、異常な値（バグ）が混入する可能性が高くなります。
 
 この問題を防ぐために用いるデザインパターンが、**値オブジェクト**です。
 
-Lombokというライブラリを使うと値オブジェクトを簡潔に書くことができます。
+値オブジェクトを実装したコードは以下のようになります。
 
-Amount.java **（Lombokを使用した版）**
-```java
-import lombok.Value;
-
-@Value
-public class Amount {
-    long value;
-}
-```
-
-実際に生成されているコードは以下のようになります。
 注目してほしい点は、
 
     ・デフォルトコンストラクタ（引数なしコンストラクタ）が生成できない
@@ -60,25 +49,20 @@ public class Amount {
     ・Getterは利用できる
     ・継承が利用できない
 
-Amount.java **（同じことをやろうとした版）**
+Amount.java 
 ```java
 public class Amount {
     private final long value;
-    private final String name;
 
-    public Amount(final long id, final String name) {
-        this.value = id;
-        this.name = name;
+    public Amount(final long value) {
+        this.value = value;
     }
 
     public long getValue() {
         return this.value;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
+// オブジェクトの参照を行うために必要な実装
     @Override
     public boolean equals(final Object o) {
         if (o == this) return true;
@@ -109,9 +93,26 @@ public class Amount {
 }
 ```
 
+ただ、毎回このような実装をするのはコストがかかりすぎるので、簡単に値オブジェクトを作成するライブラリがあるので、今回はそちらを利用します。
+
+## Lombok
+
+Lombokというライブラリを使うと値オブジェクトを実装するのに必要な各メソッドを自動的に生成してくれます。
+
+Amount.java **（Lombokを使用した版）**
+```java
+import lombok.Value;
+
+@Value
+public class Amount {
+    long value;
+}
+```
+
+例えば、このAmountクラスのインスタンスは、getValue()が使えるようになっていたり、serValue()が使えないようなコードが自動的に生成されています。
 
 
-値オブジェクトを活用したクラスの例と用意できるテストを以下に示す。
+値オブジェクトを活用したクラスの例と用意できるテストを以下に示します。
 
 Merchandise.java
 ```java
@@ -366,9 +367,6 @@ String japaneseName = c.getJapaneseName();
 オブジェクト指向らしいコードの整理ができます。
 つまり、どこに何が書いてあるかがわかりやすくなるとともに、
 新しく機能追加する際に、**どこに書くべきなのか**がわかりやすくなります。
-
-また、区分オブジェクトを活用することによって、
-switch文やif文を使った条件分岐を減らすことも可能です。
 
 
 
