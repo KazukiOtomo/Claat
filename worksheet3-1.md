@@ -189,33 +189,34 @@ PurchaseServiceのselect()とbuy()について、
 
 PurchaseTest.java
 ```java
-public class PurchaseTest {
+class PurchaseServiceTest {
 
-    final Stock stock;
-    final IPurchaseService purchaseService;
-
-    public PurchaseTest(Stock stock, IPurchaseService purchaseService) {
-        this.stock = stock;
-        this.purchaseService = purchaseService;
-    }
-
-    // 全てのテストケースよりも一番先に走るメソッドです
-    @BeforeEach
-    void setUp() {
-        var merchandise = new Merchandise(new MerchandiseId(101L), new Price(500));
-        var merchandise1 = new Merchandise(new MerchandiseId(102L), new Price(1000));
-
-        stock.add(merchandise);
-        stock.add(merchandise1);
-    }
+    /**
+     * なぜかオートワイヤリングできないので、応急処置
+     */
+    private IPurchaseService purchaseService = new PurchaseService();
 
     @Test
     void buyメソッドが動作している() {
+        var merchandise = new Merchandise(new MerchandiseId(101L), new Price(500));
+        var merchandise1 = new Merchandise(new MerchandiseId(102L), new Price(1000));
+
+        var stock = new Stock();
+        stock.add(merchandise);
+        stock.add(merchandise1);
+
         // 以下、動作しているか確かめるようなテスト
     }
 
     @Test
     void selectメソッドが動作している() {
+        var merchandise = new Merchandise(new MerchandiseId(101L), new Price(500));
+        var merchandise1 = new Merchandise(new MerchandiseId(102L), new Price(1000));
+
+        var stock = new Stock();
+        stock.add(merchandise);
+        stock.add(merchandise1);
+        
         // 以下、動作しているか確かめるようなテスト
     }
 }
