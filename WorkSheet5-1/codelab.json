@@ -3,12 +3,12 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2023-01-25T11:02:22+09:00",
+  "updated": "2023-01-25T12:19:02+09:00",
   "id": "WorkSheet5-1",
   "duration": 0,
   "title": "ソフトウェアデザイン第14回",
   "summary": "WorkSheet5-1",
-  "source": "worksheet5",
+  "source": "worksheet5.md",
   "theme": "",
   "status": [
     "published"
