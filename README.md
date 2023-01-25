@@ -5,11 +5,15 @@ H102で行います。
 
 *14回目用授業指示*
 
-https://github.com/KazukiOtomo/sample.git
+https://kazukiotomo.github.io/Claat/WorkSheet5-1/#0
+
+*ポストテスト自己評価+授業評価*
+是非ともご協力をお願いします。
+https://forms.gle/MsStxWVYMs66nusV7
 
 ## 課題
 
-今回の課題は、講義内で指示します。
+今回の課題は、ポストテストの提出となります。
 
 **・ポストテスト用のGithub ClasRoom**
 
