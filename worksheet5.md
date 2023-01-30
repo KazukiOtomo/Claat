@@ -32,10 +32,18 @@ cloneしたsampleパッケージの構成は、以下の画像のようになっ
 
 ![](png/msjkbsd.png)
 
-最後に、IntelliJ IDEAから、sd22-**post**-XXXXXXXを開きます。
+IntelliJ IDEAから、sd22-**post**-XXXXXXXを開きます。
 <aside class="negative">
 ※注意！　cloneしたlectureパッケージの方で、間違えて作業をしないように気をつけてください！
 </aside>
+
+resourcesパッケージの中に、schema.sqlがあるので、それをデータベースのコンソールに入力すれば
+テーブル構造が定義されると思います。
+**データベースについては、H2ではなく、PostgreSQLでないと動きません。**
+
+[PostgreSQL導入資料Part1](https://github.com/TakashiNishimura/PostgreSQL-intro)
+
+[PostgreSQL導入資料Part2](https://github.com/TakashiNishimura/PostgreSQL-intro/blob/main/H2toPostgres.md)
 
 ## 仕様について（プレテストと同じものです）
 フロント部分についてはLineBotを利用し、データベースも使います。
@@ -58,9 +66,7 @@ cloneしたsampleパッケージの構成は、以下の画像のようになっ
 
 ## 追加・変更する仕様について
 
-・ハート/ダイヤのとき、数字を半分にして加算する（端数は切り捨て　例：「ハートの５」→「3」として計算する）
-
-・Aを場合に応じて、「1」「11」として、計算するようにする。
+・ハート/ダイヤのとき、数字を半分にして加算する（端数は切り捨て　例：「スペードの５」→「2」, 「ダイヤの11」→ 「5」として計算する）
 
 ・（配布用コード版）現状、LINE Botで動かした時に、明らかにおかしい挙動をしている。
 

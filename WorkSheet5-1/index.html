@@ -42,9 +42,12 @@
 <p>cloneしたsampleパッケージの構成は、以下の画像のようになっています。 <img src="img/8dc7ca48973a8a28.png"></p>
 <p>この<strong>lectureパッケージの中身</strong>をGithub Classroomからcloneした自分のレポジトリ （sd22-<strong>post</strong>-XXXXXXX）に貼り付けて、一度pushしてください。</p>
 <p class="image-container"><img src="img/bbd1088ff986a800.png"></p>
-<p>最後に、IntelliJ IDEAから、sd22-<strong>post</strong>-XXXXXXXを開きます。</p>
+<p>IntelliJ IDEAから、sd22-<strong>post</strong>-XXXXXXXを開きます。</p>
 <aside class="warning"><p> ※注意！　cloneしたlectureパッケージの方で、間違えて作業をしないように気をつけてください！ </p>
 </aside>
+<p>resourcesパッケージの中に、schema.sqlがあるので、それをデータベースのコンソールに入力すれば テーブル構造が定義されると思います。 <strong>データベースについては、H2ではなく、PostgreSQLでないと動きません。</strong></p>
+<p><a href="https://github.com/TakashiNishimura/PostgreSQL-intro" target="_blank">PostgreSQL導入資料Part1</a></p>
+<p><a href="https://github.com/TakashiNishimura/PostgreSQL-intro/blob/main/H2toPostgres.md" target="_blank">PostgreSQL導入資料Part2</a></p>
 
 
       </google-codelab-step>
@@ -68,7 +71,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="追加・変更する仕様について" duration="0">
-        <p>・ハート/ダイヤのとき、数字を半分にして加算する（端数は切り捨て　例：「ハートの5」→「2」として計算する）</p>
+        <p>・ハート/ダイヤのとき、数字を半分にして加算する（端数は切り捨て　例：「スペードの５」→「2」, 「ダイヤの11」→ 「5」として計算する）</p>
 <p>・（配布用コード版）現状、LINE Botで動かした時に、明らかにおかしい挙動をしている。</p>
 <p>・追加で引いたカードをDBに記録するようにする</p>
 
