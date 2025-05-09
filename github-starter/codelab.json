@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-05-09T18:11:34+09:00",
+  "id": "github-starter",
+  "duration": 0,
+  "title": "開発現場で困らないための Git \u0026 Github",
+  "summary": "Git\u0026Github の使い方",
+  "source": "github-starter.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "codelab",
+    "markdown"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/KazukiOtomo",
+  "url": "github-starter"
+}
