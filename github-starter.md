@@ -13,11 +13,11 @@ feedback link: https://github.com/KazukiOtomo
 ### 1. レポジトリの URI を取得する
 
 <aside class="negative">
-アカウント作成やログインに関しては、[Github Docs](https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github)を参考にしてください。
+アカウント作成やログインに関しては、Github Docs(https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github)を参考にしてください。
 </aside>
 
 <aside class="negative">
-最近のGithubはセキュリティ面の強化により、2FAやアクセストークンの発行が必要です。詳しくは[Github Docs](https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github)を参考にしてください。
+最近のGithubはセキュリティ面の強化により、2FAやアクセストークンの発行が必要です。詳しくはGithub Docs(https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github)を参考にしてください。
 </aside>
 
 以下画像のボタンから、レポジトリの URI を取得できるのでコピーします。
@@ -33,11 +33,11 @@ feedback link: https://github.com/KazukiOtomo
 # ※2. 「$」 は、コマンドプロンプトのプロンプトを表しています。実行する際は、コマンドプロンプトのプロンプトは入力しないでください。
 
 # 「pwd」（自分のいる場所を確認する）、「ls」（ディレクトリ内のファイルを確認する）などのコマンドを使って、cloneする場所を確認してください。
-$ git clone <レポジトリのURI>
+$ git clone <レポジトリのURI(ペースト)>
 ```
 
 <aside class="negative">
-VSCodeやIntelliJ IDEAなどのIDEを使っている場合は、IDEのGUIからcloneすることもできます。
+VSCodeやJetBrains系統のIDEを使っている場合は、IDEのGUIでcloneすることもできます。
 ただ、裏でどういうコマンドが動いているかを知っておくことは大切なので、ここではコマンドラインでの操作を紹介しています。
 </aside>
 
