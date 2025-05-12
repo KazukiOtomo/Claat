@@ -28,14 +28,14 @@
                   feedback-link="https://github.com/KazukiOtomo">
     
       <google-codelab-step label="案件に配属されました！開発環境を整えましょう！" duration="0">
-        <h2 is-upgraded>1. レポジトリの URI を取得する</h2>
+        <h2 is-upgraded>1. <strong>レポジトリの URI を取得する</strong></h2>
 <aside class="warning"><p> アカウント作成やログインに関しては、Github Docs(https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github)を参考にしてください。 </p>
 </aside>
 <aside class="warning"><p> 最近のGithubはセキュリティ面の強化により、2FAやアクセストークンの発行が必要です。詳しくはGithub Docs(https://docs.github.com/ja/get-started/start-your-journey/creating-an-account-on-github)を参考にしてください。 </p>
 </aside>
 <p>以下画像のボタンから、レポジトリの URI を取得できるのでコピーします。</p>
 <p class="image-container"><img alt="レポジトリのURIを取得" src="img/f1c8f517e54c386b.png"></p>
-<h2 is-upgraded>2. <strong>忘れにくい場所</strong>にレポジトリを clone する</h2>
+<h2 is-upgraded>2. <strong>忘れにくい場所にレポジトリを clone する</strong></h2>
 <p>以下のコマンドを実行します。</p>
 <pre><code language="language-sh" class="language-sh"># ※1. レポジトリのURIは、実際に取得したものに置き換えてください。
 # ※2. 「$」 は、コマンドプロンプトのプロンプトを表しています。実行する際は、コマンドプロンプトのプロンプトは入力しないでください。
@@ -45,7 +45,7 @@ $ git clone &lt;レポジトリのURI(ペースト)&gt;
 </code></pre>
 <aside class="warning"><p> VSCodeやJetBrains系統のIDEを使っている場合は、IDEのGUIでcloneすることもできます。 ただ、裏でどういうコマンドが動いているかを知っておくことは大切なので、ここではコマンドラインでの操作を紹介しています。 </p>
 </aside>
-<h2 is-upgraded>3. clone したレポジトリを開く</h2>
+<h2 is-upgraded>3. <strong>clone したレポジトリを開く</strong></h2>
 <p>クローンしたものを、VSCode や IntelliJ IDEA などの IDE で開きます。 これで、開発環境の準備は完了です！</p>
 <p class="image-container"><img alt="クローンしたものを開く" src="img/74a12c75c3acf769.png"></p>
 
@@ -53,7 +53,82 @@ $ git clone &lt;レポジトリのURI(ペースト)&gt;
       </google-codelab-step>
     
       <google-codelab-step label="仕事です！指示された変更を加えてみましょう！" duration="0">
-        <h2 is-upgraded>1. ブランチを切る</h2>
+        <h2 is-upgraded>1. <strong>ブランチを切る</strong></h2>
+<p>まずは、自分が今いるブランチを確認します。 ブランチを確認するには、<strong>「git branch」</strong> コマンドを実行します。 ※ 出力結果は、「main」ブランチにいることになっています。</p>
+<pre><code language="language-sh" class="language-sh">$ git branch
+
+// 出力結果
+xxx@xxx Sample % git branch
+  feature/sample1
+* main
+</code></pre>
+<p>自分がいるブランチを確認したら、次はブランチを切ります。 どこからブランチを切るかは、基本的には「develop」ブランチから切ることが多いです。 <strong>ただし、プロジェクトにブランチ運用は異なるので、必ずプロジェクトのルールを確認してください。</strong></p>
+<p>ブランチを切るには、<strong>「git checkout -b &lt;ブランチ名&gt;」</strong> コマンドを実行します。</p>
+<pre><code language="language-sh" class="language-sh">$ git checkout -b feature/sample2
+
+// 出力結果
+xxxx@xxxx Sample % git checkout -b feature/sample2
+Switched to a new branch &#39;feature/sample2&#39;
+</code></pre>
+<p>現在やった操作はこんな感じ。 <img alt="ブランチを切る" src="img/c5eaeab79169d0bb.png"></p>
+<h2 is-upgraded>2. <strong>変更を加える</strong></h2>
+<p>ここでは、README.md に変更を加えます。 VSCode で README.md を開いて、適当なところに変更を加えます。</p>
+<p class="image-container"><img alt="README.md に変更を加える" src="img/7e06a436f4dbf247.png"></p>
+<h2 is-upgraded>3. <strong>変更を commit する</strong></h2>
+<p>では、変更を commit してみましょう。 まずは、変更を加えたファイルを add します。（これを「ステージング」といったりします）</p>
+<pre><code language="language-sh" class="language-sh">$ git add README.md
+</code></pre>
+<p>これで、README.md の変更がステージングされました。 現在の状態を確認するには、<strong>「git status」</strong> コマンドを実行します。</p>
+<pre><code language="language-sh" class="language-sh">$ git status
+
+// 出力結果
+On branch feature/sample2
+Changes to be committed:
+  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
+        modified:   README.md
+</code></pre>
+<p>余計なファイルがステージングされていないか確認したら、次は commit します。</p>
+<pre><code language="language-sh" class="language-sh">$ git commit -m &#34;README.md を変更したよ！&#34;
+
+// 出力結果
+[feature/sample2 1234567] README.md を変更したよ！
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+<p>これで、README.md の変更が commit されました。 <img alt="README.md を commit する" src="img/70d5be6d49c6d0ad.png"></p>
+<p>念の為、現在の状態を確認してみましょう。</p>
+<pre><code language="language-sh" class="language-sh">$ git log
+
+// 出力結果
+commit e33e64f5385ad16069ab4ff7ab322699d20760f9 (HEAD -&gt; feature/sample2)
+Author: KazukiOtomo &lt;cist.b219.k.otomo@gmail.com&gt;
+Date:   Mon May 12 23:48:15 2025 +0900
+
+    README.md を変更したよ！
+
+commit 8595523518586eb2928a6129b83de8ed87667e70 (origin/main, origin/HEAD, main)
+Author: KazukiOtomo118 &lt;129941419+KazukiOtomo118@users.noreply.github.com&gt;
+Date:   Tue May 6 12:15:29 2025 +0900
+
+    Initial commit
+</code></pre>
+<p>ちゃんと commit されていることが確認できましたね！ ただし、このままでは、他の人には変更を見ることができません。 あくまで自分のローカル環境にセーブされた状態です。</p>
+<h2 is-upgraded>4. <strong>push する</strong></h2>
+<p>では、変更を リモートレポジトリ（Github）に push してみましょう。</p>
+<pre><code language="language-sh" class="language-sh">$ git push origin feature/sample2
+
+// 出力結果
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 1.03 KiB | 1.03 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (0/0), done.
+To github.com:KazukiOtomo/sample.git
+ * [new branch]      feature/sample2 -&gt; feature/sample2
+</code></pre>
+<p>では、Github を開いて、push したブランチがあるか確認してみましょう。 <img alt="Githubでpushしたブランチを確認" src="img/eca3a67dc1e4205c.png"></p>
+<p>加えたコミットメッセージもあるし、README.md の変更も確認できましたね！ （蛇足ですが、README.md は環境構築方法などのドキュメントを記載するために使ったりします。） <img alt="Githubでpushしたブランチを確認" src="img/c3176bb5a0a8134f.png"></p>
 
 
       </google-codelab-step>
