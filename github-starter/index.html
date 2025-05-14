@@ -134,7 +134,58 @@ To github.com:KazukiOtomo/sample.git
       </google-codelab-step>
     
       <google-codelab-step label="あっ！間違ったブランチに commit してしまった！どうすればいい？" duration="0">
-        
+        <p>では、元の main ブランチに戻ってみましょう。</p>
+<pre><code language="language-sh" class="language-sh">$ git checkout main
+
+// 出力結果
+Switched to branch &#39;main&#39;
+Your branch is up to date with &#39;origin/main&#39;.
+</code></pre>
+<p>念の為、main ブランチにいることを確認します。</p>
+<pre><code language="language-sh" class="language-sh">$ git branch
+
+// 出力結果
+* main
+  feature/sample2
+</code></pre>
+<p>次の仕事を振られたと想定しましょう！ README.md に変更を加えます。</p>
+<p class="image-container"><img alt="README.md に変更を加える" src="img/64d0ac99e847abfe.png"></p>
+<p>では、変更を commit しましょう。</p>
+<pre><code language="language-sh" class="language-sh">$ git add README.md
+$ git commit -m &#34;README.md で2回目の変更をしたよ！&#34;
+
+// 出力結果
+[main 1234567] README.md で2回目の変更をしたよ！
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</code></pre>
+<p>でも、ちょっと待ってください。 今のまま push すると、直接 main ブランチに push されてしまいます。</p>
+<p class="image-container"><img alt="間違えてmainブランチにPushしている" src="img/ec3e4f057f342867.png"></p>
+<p>ただ、まだ push していないので、自分のローカル環境内だけの状態です。 では、commit を取り消して、元の状態に戻してみましょう。 まずは、元に戻したい commit のハッシュ値を確認します。</p>
+<pre><code language="language-sh" class="language-sh">$ git log --oneline
+
+// 出力結果
+c39b714 (HEAD -&gt; feature/sample2) README.md で2回目の変更をしたよ！
+e33e64f (origin/feature/sample2) README.md を変更したよ！
+8595523 (origin/main, origin/HEAD, main) Initial commit
+
+// この場合は、e33e64fに戻したいので、e33e64fをコピーしておきます。
+</code></pre>
+<p>次に、commit を取り消すには、<strong>「git reset –soft &lt;commit のハッシュ値&gt;」</strong> コマンドを実行します。</p>
+<pre><code language="language-sh" class="language-sh">$ git reset --soft e33e64f
+
+// 出力結果
+Unstaged changes after reset:
+M README.md
+</code></pre>
+<p>これで、commit が取り消されました。 確認してみましょう。</p>
+<pre><code language="language-sh" class="language-sh">$ git log --oneline
+
+// 出力結果
+e33e64f (origin/feature/sample2) README.md を変更したよ！
+8595523 (origin/main, origin/HEAD, main) Initial commit
+</code></pre>
+<p>無事に取り消されていることを確認できました。 落ち着いてブランチを切り直して push すれば問題ないですね。</p>
+
 
       </google-codelab-step>
     

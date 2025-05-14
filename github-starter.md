@@ -175,6 +175,86 @@ To github.com:KazukiOtomo/sample.git
 
 ## あっ！間違ったブランチに commit してしまった！どうすればいい？
 
+では、元の main ブランチに戻ってみましょう。
+
+```sh
+$ git checkout main
+
+// 出力結果
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+```
+
+念の為、main ブランチにいることを確認します。
+
+```sh
+$ git branch
+
+// 出力結果
+* main
+  feature/sample2
+```
+
+次の仕事を振られたと想定しましょう！
+README.md に変更を加えます。
+
+![README.md に変更を加える](png/github8.png)
+
+では、変更を commit しましょう。
+
+```sh
+$ git add README.md
+$ git commit -m "README.md で2回目の変更をしたよ！"
+
+// 出力結果
+[main 1234567] README.md で2回目の変更をしたよ！
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+でも、ちょっと待ってください。
+今のまま push すると、直接 main ブランチに push されてしまいます。
+
+![間違えてmainブランチにPushしている](png/github9.png)
+
+ただ、まだ push していないので、自分のローカル環境内だけの状態です。
+では、commit を取り消して、元の状態に戻してみましょう。
+まずは、元に戻したい commit のハッシュ値を確認します。
+
+```sh
+$ git log --oneline
+
+// 出力結果
+c39b714 (HEAD -> feature/sample2) README.md で2回目の変更をしたよ！
+e33e64f (origin/feature/sample2) README.md を変更したよ！
+8595523 (origin/main, origin/HEAD, main) Initial commit
+
+// この場合は、e33e64fに戻したいので、e33e64fをコピーしておきます。
+```
+
+次に、commit を取り消すには、**「git reset --soft <commit のハッシュ値>」** コマンドを実行します。
+
+```sh
+$ git reset --soft e33e64f
+
+// 出力結果
+Unstaged changes after reset:
+M README.md
+```
+
+これで、commit が取り消されました。
+確認してみましょう。
+
+```sh
+$ git log --oneline
+
+// 出力結果
+e33e64f (origin/feature/sample2) README.md を変更したよ！
+8595523 (origin/main, origin/HEAD, main) Initial commit
+```
+
+無事に取り消されていることを確認できました。
+落ち着いてブランチを切り直して push すれば問題ないですね。
+
 ## Pull Request を作りましょう！ん？コンフリクトが発生してマージできない？
 
 ## 他の人のコードレビューをしてみましょう！
