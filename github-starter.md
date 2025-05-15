@@ -369,7 +369,7 @@ VSCode を開いて、以下の画像のように、「ブランチ」 > 「マ�
 ![Pull Requestをマージ](png/github20.png)
 
 以下にマージを完了させた動画を添付します。
-![Pull Requestをマージ](png/github21.mov)
+https://drive.google.com/file/d/107SF-_3jykZHXJz5xLUOUX53HXsY_Nan/view?usp=sharing
 
 これで、問題なくマージできるようになったので、マージしていきましょう。
 ![Pull Requestをマージ](png/github22.png)
