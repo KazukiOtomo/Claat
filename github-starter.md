@@ -10,6 +10,13 @@ feedback link: https://github.com/KazukiOtomo
 
 ## 案件に配属されました！開発環境を整えましょう！
 
+<aside class="positive">
+目次
+
+git clone
+
+</aside>
+
 ### 1. **レポジトリの URI を取得する**
 
 <aside class="negative">
