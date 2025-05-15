@@ -56,7 +56,16 @@ $ git clone &lt;レポジトリのURI(ペースト)&gt;
       </google-codelab-step>
     
       <google-codelab-step label="仕事です！指示された変更を加えてみましょう！" duration="0">
-        <h2 is-upgraded>1. <strong>ブランチを切る</strong></h2>
+        <aside class="special"><p> 目次 </p>
+<p>git branch</p>
+<p>git checkout</p>
+<p>git status</p>
+<p>git log (–oneline)</p>
+<p>git add</p>
+<p>git commit</p>
+<p>git push</p>
+</aside>
+<h2 is-upgraded>1. <strong>ブランチを切る</strong></h2>
 <p>まずは、自分が今いるブランチを確認します。 ブランチを確認するには、<strong>「git branch」</strong> コマンドを実行します。 ※ 出力結果は、「main」ブランチにいることになっています。</p>
 <pre><code language="language-sh" class="language-sh">$ git branch
 
@@ -137,7 +146,10 @@ To github.com:KazukiOtomo/sample.git
       </google-codelab-step>
     
       <google-codelab-step label="あっ！間違ったブランチに commit してしまった！どうすればいい？" duration="0">
-        <p>では、元の main ブランチに戻ってみましょう。</p>
+        <aside class="special"><p> 目次 </p>
+<p>git reset</p>
+</aside>
+<p>では、元の main ブランチに戻ってみましょう。</p>
 <pre><code language="language-sh" class="language-sh">$ git checkout main
 
 // 出力結果
@@ -203,7 +215,10 @@ $ git push origin feature/sample3
       </google-codelab-step>
     
       <google-codelab-step label="Pull Request を作りましょう！ん？コンフリクトが発生してマージできない？" duration="0">
-        <p>さて、feature/sample2 ブランチと feature/sample3 ブランチを切って変更を加えたわけですが、 まだ push しただけで、他の人には変更が見えていません。</p>
+        <aside class="special"><p> 目次 </p>
+<p>コンフリクト解消</p>
+</aside>
+<p>さて、feature/sample2 ブランチと feature/sample3 ブランチを切って変更を加えたわけですが、 まだ push しただけで、他の人には変更が見えていません。</p>
 <p class="image-container"><img alt="Pull Requestを作成" src="img/5ea6579e03075eb.png"></p>
 <p>Pull Request を作成して、他の人からも見える状態にしましょう。 まずは、feature/sample2 ブランチを選択して、変更を push しましょう。</p>
 <pre><code language="language-sh" class="language-sh">$ git checkout feature/sample2 // ブランチを移動

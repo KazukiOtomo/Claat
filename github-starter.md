@@ -57,6 +57,25 @@ VSCodeやJetBrains系統のIDEを使っている場合は、IDEのGUIでcloneす
 
 ## 仕事です！指示された変更を加えてみましょう！
 
+<aside class="positive">
+目次
+
+git branch
+
+git checkout
+
+git status
+
+git log (--oneline)
+
+git add
+
+git commit
+
+git push
+
+</aside>
+
 ### 1. **ブランチを切る**
 
 まずは、自分が今いるブランチを確認します。
@@ -181,6 +200,12 @@ To github.com:KazukiOtomo/sample.git
 ![Githubでpushしたブランチを確認](png/github7.png)
 
 ## あっ！間違ったブランチに commit してしまった！どうすればいい？
+<aside class="positive">
+目次
+
+git reset
+
+</aside>
 
 では、元の main ブランチに戻ってみましょう。
 
@@ -276,6 +301,13 @@ $ git push origin feature/sample3
 ![Githubでpushしたブランチを確認](png/github10.png)
 
 ## Pull Request を作りましょう！ん？コンフリクトが発生してマージできない？
+
+<aside class="positive">
+目次
+
+コンフリクト解消
+
+</aside>
 
 さて、feature/sample2 ブランチと feature/sample3 ブランチを切って変更を加えたわけですが、
 まだ push しただけで、他の人には変更が見えていません。
