@@ -422,3 +422,42 @@ https://drive.google.com/file/d/107SF-_3jykZHXJz5xLUOUX53HXsY_Nan/view?usp=shari
 ![Pull Requestをマージ](png/github23.png)
 
 ## 他の人のコードレビューをしてみましょう！
+
+<aside class="positive">
+目次
+
+Approve
+
+</aside>
+
+では、次は他の人のコードレビューをしてみましょう。
+自分のプルリクエストを作成したら、他の人にレビューを依頼します。
+レビュアーは、プルリクエストを確認して、問題がなければ「Approve」をします。
+
+別ユーザでプルリクエストを作成すると、以下の画像のようになります。
+「Add your review」ボタンをクリックすると、レビュー画面に遷移します。
+
+![Pull Requestを作成](png/github24.png)
+
+レビュー画面では、コードの変更点を確認することができます。
+また、行を指定してコメントを残すこともできます。
+ここで、指摘や議論をすることでソースコードの品質を向上させていきます。
+![Pull Requestを作成](png/github25.png)
+
+コメントをつけ終わったら、右側の「Finish your review」ボタンをクリックします。
+ここで、<br>
+- **Comment**: コメントを残すだけ
+- **Approve**: 問題ないのでマージしても良い
+- **Request changes**: 問題があるので、修正して欲しい<br>
+の 3 つの選択肢があります。
+
+今回は「Approve」を選択して、レビューを完了させます。
+※ LGTMは、「Looks Good To Me」の略で、Approveと同じ意味です。
+
+![Pull Requestを作成](png/github26.png)
+
+これで、レビューが完了しました。
+2人以上のApproveが必要な場合は、他のレビュアーにも同様にレビューを依頼したり、ルールが違いますが、
+これで問題なければ、マージしてもらうというのがよくある流れです。
+
+![Pull Requestを作成](png/github27.png)
