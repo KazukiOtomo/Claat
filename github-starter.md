@@ -368,8 +368,8 @@ VSCode を開いて、以下の画像のように、「ブランチ」 > 「マ�
 この画面でも解決できますが、便利な「マージエディタ」機能を使って解決してみましょう。
 ![Pull Requestをマージ](png/github20.png)
 
-以下にマージを完了させた動画を添付します。
-https://drive.google.com/file/d/107SF-_3jykZHXJz5xLUOUX53HXsY_Nan/view?usp=sharing
+以下にマージを完了させた動画を添付します。<br>
+https://drive.google.com/file/d/107SF-_3jykZHXJz5xLUOUX53HXsY_Nan/view?usp=sharing<br>
 
 これで、問題なくマージできるようになったので、マージしていきましょう。
 ![Pull Requestをマージ](png/github22.png)
