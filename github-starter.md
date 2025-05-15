@@ -204,6 +204,7 @@ README.md に変更を加えます。
 
 ```sh
 $ git add README.md
+
 $ git commit -m "README.md で2回目の変更をしたよ！"
 
 // 出力結果
@@ -255,6 +256,130 @@ e33e64f (origin/feature/sample2) README.md を変更したよ！
 無事に取り消されていることを確認できました。
 落ち着いてブランチを切り直して push すれば問題ないですね。
 
+```sh
+$ git checkout -b feature/sample3
+
+$ git add README.md
+
+$ git commit -m "README.md で2回目の変更をしたよ！"
+
+$ git push origin feature/sample3
+```
+
+![Githubでpushしたブランチを確認](png/github10.png)
+
 ## Pull Request を作りましょう！ん？コンフリクトが発生してマージできない？
+
+さて、feature/sample2 ブランチと feature/sample3 ブランチを切って変更を加えたわけですが、
+まだ push しただけで、他の人には変更が見えていません。
+
+![Pull Requestを作成](png/github11.png)
+
+Pull Request を作成して、他の人からも見える状態にしましょう。
+まずは、feature/sample2 ブランチを選択して、変更を push しましょう。
+
+```sh
+$ git checkout feature/sample2 // ブランチを移動
+
+$ git branch // ブランチを確認
+* feature/sample2
+  feature/sample3
+  main
+
+$ git push origin feature/sample2 // push
+```
+
+次に、feature/sample3 ブランチも push します。
+
+```sh
+$ git checkout feature/sample3 // ブランチを移動
+
+$ git branch // ブランチを確認
+* feature/sample3
+  feature/sample2
+  main
+
+$ git push origin feature/sample3 // push
+```
+
+では、プルリクエストを作成してみましょう。
+Github を開くと、以下画像のような表示が出てきます。
+「Compare & pull request」ボタンをクリックします。
+
+![Pull Requestを作成](png/github12.png)
+
+すると、プルリクエストの作成画面が表示されます。
+色々なオプションがありますが、今回は特に大事な 5 つをピックアップします。
+
+![Pull Requestを作成](png/github13.png)
+
+1. **ベースブランチ**: プルリクエストをマージする先のブランチを選択します。通常は「main」や「develop」などのブランチを選択します。
+
+2. **タイトル**: プルリクエストのタイトルを記入します。分かりやすいタイトルをつけましょう。
+
+3. **説明**: プルリクエストの説明を記入します。レビュアーに どこを見て欲しいのか、何を確認して欲しいのかを記入します。
+
+4. **レビュアー**: プルリクエストをレビューして欲しい人を指定します。レビュアーは、プルリクエストを確認して、問題がなければマージしてくれます。
+
+5. **担当者**: プルリクエストの担当者を指定します。後から担当者で検索をかけることもできるので、指定しておくといいと思います。
+
+項目を一通り入力したら、
+「Create pull request」ボタンをクリックします。
+（※これらの項目は後から編集ができるので、ここで完璧にする必要はありません。）
+これで、プルリクエストが作成されました。
+
+![Pull Requestを作成](png/github14.png)
+
+では、この状態で、プルリクエストをマージしてみましょう。
+
+<aside class="negative">
+多くの場合、プルリクエストをマージするには、他の人のレビューを受けて、「Approve」をもらう必要があります。（この後のセクションで解説します）
+ただ、今回は自分のプルリクエストなので、レビューを受けずにマージしてしまいます。
+実際の案件では注意してください。
+</aside>
+
+「Merge pull request」ボタンをクリックします。
+続けて、「Confirm merge」ボタンをクリックします。
+
+![Pull Requestをマージ](png/github15.png)
+
+今のブランチ状況はこのような感じになっています。
+feature/sample2 ブランチで行った変更が、main ブランチにマージされました。
+
+![Pull Requestをマージ](png/github16.png)
+
+次に、feature/sample3 ブランチについても同様にマージしてみましょう。
+しかし、そのままではマージができなさそうです。
+なぜかというと、同じファイル「README.md」に対して同時に変更を加えたので、「コンフリクト」が発生してしまっているからです。
+
+![Pull Requestをマージ](png/github17.png)
+
+では、コンフリクトを解消してみましょう。
+解消の方法は複数ある（ブラウザ上で直したり、VSCode で直したり）ので、
+ここでは VSCode を使って解消してみます。
+
+VSCode を開いて、以下の画像のように、「ブランチ」 > 「マージ」を選択します。
+![Pull Requestをマージ](png/github18.png)
+
+そして、「リモートの」 main ブランチにマージしたいので、こちらを選択します。
+![Pull Requestをマージ](png/github19.png)
+
+すると、コンフリクトが発生しているファイルが表示されます。
+この画面でも解決できますが、便利な「マージエディタ」機能を使って解決してみましょう。
+![Pull Requestをマージ](png/github20.png)
+
+以下にマージを完了させた動画を添付します。
+![Pull Requestをマージ](png/github21.mov)
+
+これで、問題なくマージできるようになったので、マージしていきましょう。
+![Pull Requestをマージ](png/github22.png)
+
+これが、コンフリクト解消の流れです。
+仕事の現場では、コンフリクトが発生することはよくあるので、しっかりと覚えておきましょう。
+※分担する際には、できるだけ同じファイルを触らないようにするのがベストです。
+（が、どうしても避けられない場合がほとんどなので、どのように変更を取り込めばいいか、集まって話し合うのが一番かなと思います。）
+
+最終的なブランチ状況は以下のようになりました。
+![Pull Requestをマージ](png/github23.png)
 
 ## 他の人のコードレビューをしてみましょう！

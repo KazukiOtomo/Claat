@@ -152,6 +152,7 @@ Your branch is up to date with &#39;origin/main&#39;.
 <p class="image-container"><img alt="README.md に変更を加える" src="img/64d0ac99e847abfe.png"></p>
 <p>では、変更を commit しましょう。</p>
 <pre><code language="language-sh" class="language-sh">$ git add README.md
+
 $ git commit -m &#34;README.md で2回目の変更をしたよ！&#34;
 
 // 出力結果
@@ -185,12 +186,73 @@ e33e64f (origin/feature/sample2) README.md を変更したよ！
 8595523 (origin/main, origin/HEAD, main) Initial commit
 </code></pre>
 <p>無事に取り消されていることを確認できました。 落ち着いてブランチを切り直して push すれば問題ないですね。</p>
+<pre><code language="language-sh" class="language-sh">$ git checkout -b feature/sample3
+
+$ git add README.md
+
+$ git commit -m &#34;README.md で2回目の変更をしたよ！&#34;
+
+$ git push origin feature/sample3
+</code></pre>
+<p class="image-container"><img alt="Githubでpushしたブランチを確認" src="img/816963fa8ee9596e.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Pull Request を作りましょう！ん？コンフリクトが発生してマージできない？" duration="0">
-        
+        <p>さて、feature/sample2 ブランチと feature/sample3 ブランチを切って変更を加えたわけですが、 まだpushしただけで、他の人には変更が見えていません。</p>
+<p class="image-container"><img alt="Pull Requestを作成" src="img/5ea6579e03075eb.png"></p>
+<p>Pull Request を作成して、他の人からも見える状態にしましょう。 まずは、feature/sample2 ブランチを選択して、変更をpushしましょう。</p>
+<pre><code language="language-sh" class="language-sh">$ git checkout feature/sample2 // ブランチを移動
+
+$ git branch // ブランチを確認
+* feature/sample2
+  feature/sample3
+  main
+  
+$ git push origin feature/sample2 // push
+</code></pre>
+<p>次に、feature/sample3 ブランチもpushします。</p>
+<pre><code language="language-sh" class="language-sh">$ git checkout feature/sample3 // ブランチを移動
+
+$ git branch // ブランチを確認
+* feature/sample3
+  feature/sample2
+  main
+  
+$ git push origin feature/sample3 // push
+</code></pre>
+<p>では、プルリクエストを作成してみましょう。 Githubを開くと、以下画像のような表示が出てきます。 「Compare &amp; pull request」ボタンをクリックします。</p>
+<p class="image-container"><img alt="Pull Requestを作成" src="img/b17fc469f2ddada8.png"></p>
+<p>すると、プルリクエストの作成画面が表示されます。 色々なオプションがありますが、今回は特に大事な5つをピックアップします。</p>
+<p class="image-container"><img alt="Pull Requestを作成" src="img/9f8aba3ae8d240ea.png"></p>
+<ol type="1">
+<li><strong>ベースブランチ</strong>: プルリクエストをマージする先のブランチを選択します。通常は「main」や「develop」などのブランチを選択します。</li>
+<li><strong>タイトル</strong>: プルリクエストのタイトルを記入します。分かりやすいタイトルをつけましょう。</li>
+<li><strong>説明</strong>: プルリクエストの説明を記入します。レビュアーに どこを見て欲しいのか、何を確認して欲しいのかを記入します。</li>
+<li><strong>レビュアー</strong>: プルリクエストをレビューして欲しい人を指定します。レビュアーは、プルリクエストを確認して、問題がなければマージしてくれます。</li>
+<li><strong>担当者</strong>: プルリクエストの担当者を指定します。後から担当者で検索をかけることもできるので、指定しておくといいと思います。</li>
+</ol>
+<p>項目を一通り入力したら、 「Create pull request」ボタンをクリックします。 （※これらの項目は後から編集ができるので、ここで完璧にする必要はありません。） これで、プルリクエストが作成されました。</p>
+<p class="image-container"><img alt="Pull Requestを作成" src="img/52fdead37639d731.png"></p>
+<p>では、この状態で、プルリクエストをマージしてみましょう。</p>
+<aside class="warning"><p> 多くの場合、プルリクエストをマージするには、他の人のレビューを受けて、「Approve」をもらう必要があります。（この後のセクションで解説します） ただ、今回は自分のプルリクエストなので、レビューを受けずにマージしてしまいます。 実際の案件では注意してください。 </p>
+</aside>
+<p>「Merge pull request」ボタンをクリックします。 続けて、「Confirm merge」ボタンをクリックします。</p>
+<p class="image-container"><img alt="Pull Requestをマージ" src="img/17253d5d8b979987.png"></p>
+<p>今のブランチ状況はこのような感じになっています。 feature/sample2 ブランチで行った変更が、main ブランチにマージされました。</p>
+<p class="image-container"><img alt="Pull Requestをマージ" src="img/6ad8e2f89c898049.png"></p>
+<p>次に、feature/sample3 ブランチについても同様にマージしてみましょう。 しかし、そのままではマージができなさそうです。 なぜかというと、同じファイル「README.md」に対して同時に変更を加えたので、「コンフリクト」が発生してしまっているからです。</p>
+<p class="image-container"><img alt="Pull Requestをマージ" src="img/65119fdf8e7caa11.png"></p>
+<p>では、コンフリクトを解消してみましょう。 解消の方法は複数ある（ブラウザ上で直したり、VSCodeで直したり）ので、 ここではVSCodeを使って解消してみます。</p>
+<p>VSCodeを開いて、以下の画像のように、「ブランチ」 &gt; 「マージ」を選択します。 <img alt="Pull Requestをマージ" src="img/bf47c5bfcb36de5d.png"></p>
+<p>そして、「リモートの」 main ブランチにマージしたいので、こちらを選択します。 <img alt="Pull Requestをマージ" src="img/2d08f1747d416ee8.png"></p>
+<p>すると、コンフリクトが発生しているファイルが表示されます。 この画面でも解決できますが、便利な「マージエディタ」機能を使って解決してみましょう。 <img alt="Pull Requestをマージ" src="img/a8c659499c374298.png"></p>
+<p>以下にマージを完了させた動画を添付します。 <img alt="Pull Requestをマージ" src="img/b60bbdb2271ab8b.mov"></p>
+<p>これで、問題なくマージできるようになったので、マージしていきましょう。 <img alt="Pull Requestをマージ" src="img/96d355de8e066da2.png"></p>
+<p>これが、コンフリクト解消の流れです。 仕事の現場では、コンフリクトが発生することはよくあるので、しっかりと覚えておきましょう。 ※分担する際には、できるだけ同じファイルを触らないようにするのがベストです。 （が、どうしても避けられない場合がほとんどなので、どのように変更を取り込めばいいか、集まって話し合うのが一番かなと思います。）</p>
+<p>最終的なブランチ状況は以下のようになりました。 <img alt="Pull Requestをマージ" src="img/b808a11a9cb25b83.png"></p>
+
 
       </google-codelab-step>
     
